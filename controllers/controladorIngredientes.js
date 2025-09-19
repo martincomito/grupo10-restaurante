@@ -1,0 +1,147 @@
+import IngredienteModelo from "../models/IngredienteModelo.js";
+import { formatDateToDDMMYYYY } from "../utils/dateUtils.js";
+
+// Obtener todos los ingredientes
+export const obtenerTodosIngredientes = async (req, res) => {
+  try {
+    const ingredientes = await IngredienteModelo.obtenerTodos();
+
+    // Format dates for display
+    const ingredientesConFechasFormateadas = ingredientes.map(
+      (ingrediente) => ({
+        ...ingrediente,
+        fechaVencimientoFormateada: formatDateToDDMMYYYY(
+          ingrediente.fechaVencimiento
+        ),
+      })
+    );
+
+    res.render("ingredientes/index", {
+      ingredientes: ingredientesConFechasFormateadas,
+      titulo: "Stock de Ingredientes",
+    });
+  } catch (error) {
+    console.error("Error al obtener ingredientes:", error);
+    res.status(500).render("error", {
+      mensaje: "Error al obtener los ingredientes",
+      error: error.message,
+    });
+  }
+};
+
+// Mostrar formulario para crear nuevo ingrediente
+export const mostrarFormularioCrear = (req, res) => {
+  res.render("ingredientes/create", {
+    titulo: "Agregar Ingrediente",
+    ingrediente: {},
+  });
+};
+
+// Crear nuevo ingrediente
+export const crearIngrediente = async (req, res) => {
+  try {
+    const datosIngrediente = {
+      nombre: req.body.nombre,
+      cantidad: parseInt(req.body.cantidad),
+      unidad: req.body.unidad,
+      precio: parseFloat(req.body.precio),
+      fechaVencimiento: req.body.fechaVencimiento,
+      categoria: req.body.categoria,
+    };
+
+    const nuevoIngrediente = await IngredienteModelo.crear(datosIngrediente);
+    res.redirect("/ingredientes");
+  } catch (error) {
+    console.error("Error al crear ingrediente:", error);
+    res.status(500).render("error", {
+      mensaje: "Error al crear el ingrediente",
+      error: error.message,
+    });
+  }
+};
+
+// Mostrar formulario para editar ingrediente
+export const mostrarFormularioEditar = async (req, res) => {
+  try {
+    const ingrediente = await IngredienteModelo.obtenerPorId(req.params.id);
+    if (!ingrediente) {
+      return res.status(404).render("error", {
+        mensaje: "Ingrediente no encontrado",
+        error: "El ingrediente solicitado no existe",
+      });
+    }
+
+    // Format date for display in edit form
+    const ingredienteConFechaFormateada = {
+      ...ingrediente,
+      fechaVencimientoFormateada: formatDateToDDMMYYYY(
+        ingrediente.fechaVencimiento
+      ),
+    };
+
+    res.render("ingredientes/edit", {
+      titulo: "Editar Ingrediente",
+      ingrediente: ingredienteConFechaFormateada,
+    });
+  } catch (error) {
+    console.error("Error al obtener ingrediente:", error);
+    res.status(500).render("error", {
+      mensaje: "Error al obtener el ingrediente",
+      error: error.message,
+    });
+  }
+};
+
+// Actualizar ingrediente
+export const actualizarIngrediente = async (req, res) => {
+  try {
+    const datosIngrediente = {
+      nombre: req.body.nombre,
+      cantidad: parseInt(req.body.cantidad),
+      unidad: req.body.unidad,
+      precio: parseFloat(req.body.precio),
+      fechaVencimiento: req.body.fechaVencimiento,
+      categoria: req.body.categoria,
+    };
+
+    const ingredienteActualizado = await IngredienteModelo.actualizar(
+      req.params.id,
+      datosIngrediente
+    );
+    if (!ingredienteActualizado) {
+      return res.status(404).render("error", {
+        mensaje: "Ingrediente no encontrado",
+        error: "El ingrediente solicitado no existe",
+      });
+    }
+
+    res.redirect("/ingredientes");
+  } catch (error) {
+    console.error("Error al actualizar ingrediente:", error);
+    res.status(500).render("error", {
+      mensaje: "Error al actualizar el ingrediente",
+      error: error.message,
+    });
+  }
+};
+
+// Eliminar ingrediente
+export const eliminarIngrediente = async (req, res) => {
+  try {
+    const eliminado = await IngredienteModelo.eliminar(req.params.id);
+    if (!eliminado) {
+      return res.status(404).render("error", {
+        mensaje: "Ingrediente no encontrado",
+        error: "El ingrediente solicitado no existe",
+      });
+    }
+
+    res.redirect("/ingredientes");
+  } catch (error) {
+    console.error("Error al eliminar ingrediente:", error);
+    res.status(500).render("error", {
+      mensaje: "Error al eliminar el ingrediente",
+      error: error.message,
+    });
+  }
+};
