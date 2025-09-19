@@ -1,4 +1,4 @@
-# Sistema de Gestión de Restaurante
+# Sistema de Gestión de Restaurante - Sabor Urbano
 
 Sistema web para gestionar el stock de ingredientes y proveedores de un restaurante.
 

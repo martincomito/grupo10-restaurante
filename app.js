@@ -39,7 +39,7 @@ app.use(
 // Rutas
 app.get("/", (req, res) => {
   res.render("index", {
-    titulo: "Sistema de Gestión de Restaurante",
+    titulo: "Sabor Urbano",
   });
 });
 
