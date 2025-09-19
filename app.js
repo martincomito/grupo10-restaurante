@@ -25,7 +25,7 @@ app.set("views", path.join(__dirname, "views"));
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(methodOverride("_method")); // Para usar métodos HTTP PUT y DELETE
+app.use(methodOverride("_method")); // Para usar métodos PUT y DELETE
 
 // Rutas
 app.get("/", (req, res) => {

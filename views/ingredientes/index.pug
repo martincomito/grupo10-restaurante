@@ -25,9 +25,8 @@ block content
             td $#{ingrediente.precio}
             td
               a.boton.boton-advertencia(href=`/ingredientes/${ingrediente.id}/editar`) Editar
-              form(style="display: inline;", method="POST", action=`/ingredientes/${ingrediente.id}/eliminar`)
-                input(type="hidden", name="_method", value="DELETE")
-                button.boton.boton-peligro(type="submit", onclick="return confirm('¿Eliminar este ingrediente?')") Eliminar
+              form(style="display: inline;", method="POST", action=`/ingredientes/${ingrediente.id}/eliminar?_method=DELETE`)
+                button.boton.boton-peligro(type="submit") Eliminar
   else
     .sin-datos
       p No hay ingredientes registrados.
