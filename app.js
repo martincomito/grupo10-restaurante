@@ -25,22 +25,11 @@ app.set("views", path.join(__dirname, "views"));
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(
-  methodOverride(function (req, res) {
-    if (req.body && typeof req.body === "object" && "_method" in req.body) {
-      // look in urlencoded POST bodies and delete it
-      var method = req.body._method;
-      delete req.body._method;
-      return method;
-    }
-  })
-);
+app.use(methodOverride("_method")); // Para usar métodos HTTP PUT y DELETE
 
 // Rutas
 app.get("/", (req, res) => {
-  res.render("index", {
-    titulo: "Sabor Urbano",
-  });
+  res.render("index");
 });
 
 app.use("/ingredientes", rutasIngredientes);
