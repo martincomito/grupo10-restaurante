@@ -7,7 +7,6 @@ export const obtenerTodosIngredientes = async (req, res) => {
 
     res.render("ingredientes/index", {
       ingredientes: ingredientes,
-      titulo: "Stock de Ingredientes",
     });
   } catch (error) {
     console.error("Error al obtener ingredientes:", error);
@@ -21,7 +20,6 @@ export const obtenerTodosIngredientes = async (req, res) => {
 // Mostrar formulario para crear nuevo ingrediente
 export const mostrarFormularioCrear = (req, res) => {
   res.render("ingredientes/crear", {
-    titulo: "Agregar Ingrediente",
     ingrediente: {},
   });
 };
@@ -59,7 +57,6 @@ export const mostrarFormularioEditar = async (req, res) => {
     }
 
     res.render("ingredientes/editar", {
-      titulo: "Editar Ingrediente",
       ingrediente: ingrediente,
     });
   } catch (error) {

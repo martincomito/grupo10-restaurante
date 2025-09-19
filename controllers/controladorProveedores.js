@@ -6,7 +6,6 @@ export const obtenerTodosProveedores = async (req, res) => {
     const proveedores = await ProveedorModelo.obtenerTodos();
     res.render("proveedores/index", {
       proveedores,
-      titulo: "Proveedores",
     });
   } catch (error) {
     console.error("Error al obtener proveedores:", error);
@@ -20,7 +19,6 @@ export const obtenerTodosProveedores = async (req, res) => {
 // Mostrar formulario para crear nuevo proveedor
 export const mostrarFormularioCrear = (req, res) => {
   res.render("proveedores/crear", {
-    titulo: "Agregar Proveedor",
     proveedor: {},
   });
 };
