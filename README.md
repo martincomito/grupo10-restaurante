@@ -31,15 +31,14 @@ grupo10-restaurante/
 └── views/                 # Plantillas Pug
     ├── layout.pug         # Layout base
     ├── index.pug          # Página principal
-    ├── error.pug          # Página de error
     ├── ingredientes/      # Vistas de ingredientes
     │   ├── index.pug
-    │   ├── create.pug
-    │   └── edit.pug
+    │   ├── crear.pug
+    │   └── editar.pug
     └── proveedores/       # Vistas de proveedores
         ├── index.pug
-        ├── create.pug
-        └── edit.pug
+        ├── crear.pug
+        └── editar.pug
 ```
 
 ## Instalación

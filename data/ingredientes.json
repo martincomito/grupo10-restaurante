@@ -1,9 +1,9 @@
 [
   {
-    "id": 1,
-    "nombre": "Tomate Orgánico",
-    "cantidad": 10,
-    "unidad": "kilo",
-    "precio": 2500
+    "id": 2,
+    "nombre": "Tomate",
+    "cantidad": 34,
+    "unidad": "unidad",
+    "precio": 15000
   }
 ]

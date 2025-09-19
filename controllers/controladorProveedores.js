@@ -10,7 +10,7 @@ export const obtenerTodosProveedores = async (req, res) => {
     });
   } catch (error) {
     console.error("Error al obtener proveedores:", error);
-    res.status(500).render("error", {
+    res.status(500).json({
       mensaje: "Error al obtener los proveedores",
       error: error.message,
     });
@@ -19,7 +19,7 @@ export const obtenerTodosProveedores = async (req, res) => {
 
 // Mostrar formulario para crear nuevo proveedor
 export const mostrarFormularioCrear = (req, res) => {
-  res.render("proveedores/create", {
+  res.render("proveedores/crear", {
     titulo: "Agregar Proveedor",
     proveedor: {},
   });
@@ -39,7 +39,7 @@ export const crearProveedor = async (req, res) => {
     res.redirect("/proveedores");
   } catch (error) {
     console.error("Error al crear proveedor:", error);
-    res.status(500).render("error", {
+    res.status(500).json({
       mensaje: "Error al crear el proveedor",
       error: error.message,
     });
@@ -51,18 +51,18 @@ export const mostrarFormularioEditar = async (req, res) => {
   try {
     const proveedor = await ProveedorModelo.obtenerPorId(req.params.id);
     if (!proveedor) {
-      return res.status(404).render("error", {
+      return res.status(404).json({
         mensaje: "Proveedor no encontrado",
         error: "El proveedor solicitado no existe",
       });
     }
 
-    res.render("proveedores/edit", {
+    res.render("proveedores/editar", {
       proveedor,
     });
   } catch (error) {
     console.error("Error al obtener proveedor:", error);
-    res.status(500).render("error", {
+    res.status(500).json({
       mensaje: "Error al obtener el proveedor",
       error: error.message,
     });
@@ -84,7 +84,7 @@ export const actualizarProveedor = async (req, res) => {
       datosProveedor
     );
     if (!proveedorActualizado) {
-      return res.status(404).render("error", {
+      return res.status(404).json({
         mensaje: "Proveedor no encontrado",
         error: "El proveedor solicitado no existe",
       });
@@ -93,7 +93,7 @@ export const actualizarProveedor = async (req, res) => {
     res.redirect("/proveedores");
   } catch (error) {
     console.error("Error al actualizar proveedor:", error);
-    res.status(500).render("error", {
+    res.status(500).json({
       mensaje: "Error al actualizar el proveedor",
       error: error.message,
     });
@@ -105,7 +105,7 @@ export const eliminarProveedor = async (req, res) => {
   try {
     const eliminado = await ProveedorModelo.eliminar(req.params.id);
     if (!eliminado) {
-      return res.status(404).render("error", {
+      return res.status(404).json({
         mensaje: "Proveedor no encontrado",
         error: "El proveedor solicitado no existe",
       });
@@ -114,7 +114,7 @@ export const eliminarProveedor = async (req, res) => {
     res.redirect("/proveedores");
   } catch (error) {
     console.error("Error al eliminar proveedor:", error);
-    res.status(500).render("error", {
+    res.status(500).json({
       mensaje: "Error al eliminar el proveedor",
       error: error.message,
     });

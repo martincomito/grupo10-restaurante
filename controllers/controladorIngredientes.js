@@ -11,7 +11,7 @@ export const obtenerTodosIngredientes = async (req, res) => {
     });
   } catch (error) {
     console.error("Error al obtener ingredientes:", error);
-    res.status(500).render("error", {
+    res.status(500).json({
       mensaje: "Error al obtener los ingredientes",
       error: error.message,
     });
@@ -20,7 +20,7 @@ export const obtenerTodosIngredientes = async (req, res) => {
 
 // Mostrar formulario para crear nuevo ingrediente
 export const mostrarFormularioCrear = (req, res) => {
-  res.render("ingredientes/create", {
+  res.render("ingredientes/crear", {
     titulo: "Agregar Ingrediente",
     ingrediente: {},
   });
@@ -40,7 +40,7 @@ export const crearIngrediente = async (req, res) => {
     res.redirect("/ingredientes");
   } catch (error) {
     console.error("Error al crear ingrediente:", error);
-    res.status(500).render("error", {
+    res.status(500).json({
       mensaje: "Error al crear el ingrediente",
       error: error.message,
     });
@@ -52,19 +52,19 @@ export const mostrarFormularioEditar = async (req, res) => {
   try {
     const ingrediente = await IngredienteModelo.obtenerPorId(req.params.id);
     if (!ingrediente) {
-      return res.status(404).render("error", {
+      return res.status(404).json({
         mensaje: "Ingrediente no encontrado",
         error: "El ingrediente solicitado no existe",
       });
     }
 
-    res.render("ingredientes/edit", {
+    res.render("ingredientes/editar", {
       titulo: "Editar Ingrediente",
       ingrediente: ingrediente,
     });
   } catch (error) {
     console.error("Error al obtener ingrediente:", error);
-    res.status(500).render("error", {
+    res.status(500).json({
       mensaje: "Error al obtener el ingrediente",
       error: error.message,
     });
@@ -86,7 +86,7 @@ export const actualizarIngrediente = async (req, res) => {
       datosIngrediente
     );
     if (!ingredienteActualizado) {
-      return res.status(404).render("error", {
+      return res.status(404).json({
         mensaje: "Ingrediente no encontrado",
         error: "El ingrediente solicitado no existe",
       });
@@ -95,7 +95,7 @@ export const actualizarIngrediente = async (req, res) => {
     res.redirect("/ingredientes");
   } catch (error) {
     console.error("Error al actualizar ingrediente:", error);
-    res.status(500).render("error", {
+    res.status(500).json({
       mensaje: "Error al actualizar el ingrediente",
       error: error.message,
     });
@@ -107,7 +107,7 @@ export const eliminarIngrediente = async (req, res) => {
   try {
     const eliminado = await IngredienteModelo.eliminar(req.params.id);
     if (!eliminado) {
-      return res.status(404).render("error", {
+      return res.status(404).json({
         mensaje: "Ingrediente no encontrado",
         error: "El ingrediente solicitado no existe",
       });
@@ -116,7 +116,7 @@ export const eliminarIngrediente = async (req, res) => {
     res.redirect("/ingredientes");
   } catch (error) {
     console.error("Error al eliminar ingrediente:", error);
-    res.status(500).render("error", {
+    res.status(500).json({
       mensaje: "Error al eliminar el ingrediente",
       error: error.message,
     });

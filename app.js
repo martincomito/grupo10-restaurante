@@ -48,21 +48,5 @@ app.use("/proveedores", rutasProveedores);
 
 // Iniciar servidor
 app.listen(PUERTO, () => {
-  console.log(`Servidor ejecutándose en http://localhost:${PUERTO}`);
-  console.log("Rutas disponibles:");
-  console.log("  - GET  / (Página principal)");
-  console.log("  - GET  /ingredientes (Lista de ingredientes)");
-  console.log("  - GET  /ingredientes/crear (Formulario crear ingrediente)");
-  console.log("  - POST /ingredientes (Crear ingrediente)");
-  console.log(
-    "  - GET  /ingredientes/:id/editar (Formulario editar ingrediente)"
-  );
-  console.log("  - PUT  /ingredientes/:id (Actualizar ingrediente)");
-  console.log("  - DELETE /ingredientes/:id/eliminar (Eliminar ingrediente)");
-  console.log("  - GET  /proveedores (Lista de proveedores)");
-  console.log("  - GET  /proveedores/crear (Formulario crear proveedor)");
-  console.log("  - POST /proveedores (Crear proveedor)");
-  console.log("  - GET  /proveedores/:id/editar (Formulario editar proveedor)");
-  console.log("  - PUT  /proveedores/:id (Actualizar proveedor)");
-  console.log("  - DELETE /proveedores/:id/eliminar (Eliminar proveedor)");
+  console.log(`Servidor corriendo en http://localhost:${PUERTO}`);
 });
