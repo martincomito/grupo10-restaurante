@@ -13,19 +13,19 @@ const router = express.Router();
 // GET /proveedores - Mostrar todos los proveedores
 router.get("/", obtenerTodosProveedores);
 
-// GET /proveedores/create - Mostrar formulario para crear nuevo proveedor
-router.get("/create", mostrarFormularioCrear);
+// GET /proveedores/crear - Mostrar formulario para crear nuevo proveedor
+router.get("/crear", mostrarFormularioCrear);
 
 // POST /proveedores - Crear nuevo proveedor
 router.post("/", crearProveedor);
 
-// GET /proveedores/:id/edit - Mostrar formulario para editar proveedor
-router.get("/:id/edit", mostrarFormularioEditar);
+// GET /proveedores/:id/editar - Mostrar formulario para editar proveedor
+router.get("/:id/editar", mostrarFormularioEditar);
 
-// POST /proveedores/:id - Actualizar proveedor
-router.post("/:id", actualizarProveedor);
+// PUT /proveedores/:id - Actualizar proveedor
+router.put("/:id", actualizarProveedor);
 
-// POST /proveedores/:id/delete - Eliminar proveedor
-router.post("/:id/delete", eliminarProveedor);
+// POST /proveedores/:id/eliminar - Eliminar proveedor
+router.delete("/:id/eliminar", eliminarProveedor);
 
 export default router;

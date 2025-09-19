@@ -1,23 +1,12 @@
 import IngredienteModelo from "../models/IngredienteModelo.js";
-import { formatDateToDDMMYYYY } from "../utils/dateUtils.js";
 
 // Obtener todos los ingredientes
 export const obtenerTodosIngredientes = async (req, res) => {
   try {
     const ingredientes = await IngredienteModelo.obtenerTodos();
 
-    // Format dates for display
-    const ingredientesConFechasFormateadas = ingredientes.map(
-      (ingrediente) => ({
-        ...ingrediente,
-        fechaVencimientoFormateada: formatDateToDDMMYYYY(
-          ingrediente.fechaVencimiento
-        ),
-      })
-    );
-
     res.render("ingredientes/index", {
-      ingredientes: ingredientesConFechasFormateadas,
+      ingredientes: ingredientes,
       titulo: "Stock de Ingredientes",
     });
   } catch (error) {
@@ -45,8 +34,6 @@ export const crearIngrediente = async (req, res) => {
       cantidad: parseInt(req.body.cantidad),
       unidad: req.body.unidad,
       precio: parseFloat(req.body.precio),
-      fechaVencimiento: req.body.fechaVencimiento,
-      categoria: req.body.categoria,
     };
 
     const nuevoIngrediente = await IngredienteModelo.crear(datosIngrediente);
@@ -71,17 +58,9 @@ export const mostrarFormularioEditar = async (req, res) => {
       });
     }
 
-    // Format date for display in edit form
-    const ingredienteConFechaFormateada = {
-      ...ingrediente,
-      fechaVencimientoFormateada: formatDateToDDMMYYYY(
-        ingrediente.fechaVencimiento
-      ),
-    };
-
     res.render("ingredientes/edit", {
       titulo: "Editar Ingrediente",
-      ingrediente: ingredienteConFechaFormateada,
+      ingrediente: ingrediente,
     });
   } catch (error) {
     console.error("Error al obtener ingrediente:", error);
@@ -100,8 +79,6 @@ export const actualizarIngrediente = async (req, res) => {
       cantidad: parseInt(req.body.cantidad),
       unidad: req.body.unidad,
       precio: parseFloat(req.body.precio),
-      fechaVencimiento: req.body.fechaVencimiento,
-      categoria: req.body.categoria,
     };
 
     const ingredienteActualizado = await IngredienteModelo.actualizar(

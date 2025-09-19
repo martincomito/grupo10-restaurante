@@ -33,11 +33,6 @@ export const crearProveedor = async (req, res) => {
       contacto: req.body.contacto,
       telefono: req.body.telefono,
       email: req.body.email,
-      direccion: req.body.direccion,
-      productos: req.body.productos
-        ? req.body.productos.split(",").map((producto) => producto.trim())
-        : [],
-      activo: req.body.activo === "true",
     };
 
     const nuevoProveedor = await ProveedorModelo.crear(datosProveedor);
@@ -82,11 +77,6 @@ export const actualizarProveedor = async (req, res) => {
       contacto: req.body.contacto,
       telefono: req.body.telefono,
       email: req.body.email,
-      direccion: req.body.direccion,
-      productos: req.body.productos
-        ? req.body.productos.split(",").map((producto) => producto.trim())
-        : [],
-      activo: req.body.activo === "true",
     };
 
     const proveedorActualizado = await ProveedorModelo.actualizar(

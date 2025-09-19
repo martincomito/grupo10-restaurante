@@ -72,8 +72,8 @@ class IngredienteModelo {
       return false; // Ingrediente no encontrado
     }
 
-    // const resultado = await this.guardarTodos(ingredientesFiltrados);
-    return true;
+    const resultado = await this.guardarTodos(ingredientesFiltrados);
+    return resultado;
   }
 
   // Guardar todos los ingredientes en el archivo

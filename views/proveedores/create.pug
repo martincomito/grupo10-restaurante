@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  h2 Agregar Nuevo Proveedor
+  h2 Agregar nuevo proveedor
   
   form(method="POST", action="/proveedores")
     .grupo-formulario
@@ -21,19 +21,7 @@ block content
       label(for="email") Email:
       input(type="email", id="email", name="email", required)
     
-    .grupo-formulario
-      label(for="direccion") Dirección:
-      textarea(id="direccion", name="direccion", rows="3", required)
     
-    .grupo-formulario
-      label(for="productos") Productos (separados por comas):
-      input(type="text", id="productos", name="productos", placeholder="Ej: Vegetales, Frutas, Carnes")
-    
-    .grupo-formulario
-      label(for="activo") Estado:
-      select(id="activo", name="activo", required)
-        option(value="true", selected) Activo
-        option(value="false") Inactivo
     
     .acciones-formulario
       button.boton.boton-exito(type="submit") Crear Proveedor

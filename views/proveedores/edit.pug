@@ -22,22 +22,10 @@ block content
       label(for="email") Email:
       input(type="email", id="email", name="email", value=proveedor.email, required)
     
-    .grupo-formulario
-      label(for="direccion") Dirección:
-      textarea(id="direccion", name="direccion", rows="3", required)= proveedor.direccion
     
-    .grupo-formulario
-      label(for="productos") Productos (separados por comas):
-      input(type="text", id="productos", name="productos", value=proveedor.productos ? proveedor.productos.join(', ') : '', placeholder="Ej: Vegetales, Frutas, Carnes")
-    
-    .grupo-formulario
-      label(for="activo") Estado:
-      select(id="activo", name="activo", required)
-        option(value="true", selected=proveedor.activo) Activo
-        option(value="false", selected=!proveedor.activo) Inactivo
     
     .acciones-formulario
-      button.boton.boton-exito(type="submit") Actualizar Proveedor
+      button.boton.boton-exito(type="submit") Actualizar
       a.boton.boton-principal(href="/proveedores") Cancelar
 
   style.

@@ -4,48 +4,28 @@ block content
   h2 Editar Ingrediente
   
   form(method="POST", action=`/ingredientes/${ingrediente.id}`)
+    input(type="hidden", name="_method", value="PUT")
     .fila-formulario
       .grupo-formulario
         label(for="nombre") Nombre:
         input(type="text", id="nombre", name="nombre", value=ingrediente.nombre, required)
       
       .grupo-formulario
-        label(for="categoria") Categoría:
-        select(id="categoria", name="categoria", required)
-          option(value="", selected=!ingrediente.categoria) Seleccionar categoría
-          option(value="Vegetales", selected=ingrediente.categoria === "Vegetales") Vegetales
-          option(value="Carnes", selected=ingrediente.categoria === "Carnes") Carnes
-          option(value="Granos", selected=ingrediente.categoria === "Granos") Granos
-          option(value="Frutas", selected=ingrediente.categoria === "Frutas") Frutas
-          option(value="Lácteos", selected=ingrediente.categoria === "Lácteos") Lácteos
-          option(value="Condimentos", selected=ingrediente.categoria === "Condimentos") Condimentos
-          option(value="Otros", selected=ingrediente.categoria === "Otros") Otros
-    
-    .fila-formulario
-      .grupo-formulario
         label(for="cantidad") Cantidad:
         input(type="number", id="cantidad", name="cantidad", value=ingrediente.cantidad, min="0", step="0.01", required)
-      
+    
+    .fila-formulario
       .grupo-formulario
         label(for="unidad") Unidad:
         select(id="unidad", name="unidad", required)
           option(value="", selected=!ingrediente.unidad) Seleccionar unidad
-          option(value="kg", selected=ingrediente.unidad === "kg") Kilogramos (kg)
-          option(value="g", selected=ingrediente.unidad === "g") Gramos (g)
-          option(value="l", selected=ingrediente.unidad === "l") Litros (l)
-          option(value="ml", selected=ingrediente.unidad === "ml") Mililitros (ml)
+          option(value="kilo", selected=ingrediente.unidad === "kilo") Kilo
           option(value="unidad", selected=ingrediente.unidad === "unidad") Unidad
           option(value="paquete", selected=ingrediente.unidad === "paquete") Paquete
-    
-    .fila-formulario
+      
       .grupo-formulario
         label(for="precio") Precio:
         input(type="number", id="precio", name="precio", value=ingrediente.precio, min="0", step="0.01", required)
-      
-      .grupo-formulario
-        label(for="fechaVencimiento") Fecha de Vencimiento:
-        input(type="date", id="fechaVencimiento", name="fechaVencimiento", value=ingrediente.fechaVencimiento, required)
-        small.formato-fecha (Formato: #{ingrediente.fechaVencimientoFormateada})
     
     .acciones-formulario
       button.boton.boton-exito(type="submit") Actualizar Ingrediente
@@ -55,10 +35,4 @@ block content
     .acciones-formulario {
       margin-top: 20px;
       text-align: center;
-    }
-    .formato-fecha {
-      display: block;
-      color: #666;
-      font-size: 0.9em;
-      margin-top: 5px;
     }

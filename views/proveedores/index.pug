@@ -3,7 +3,7 @@ extends ../layout
 block content
   .encabezado-proveedores
     h2 Proveedores
-    a.boton.boton-exito(href="/proveedores/create") Agregar Nuevo Proveedor
+    a.boton.boton-exito(href="/proveedores/crear") Agregar nuevo proveedor
 
   if proveedores && proveedores.length > 0
     table
@@ -14,7 +14,6 @@ block content
           th Contacto
           th Teléfono
           th Email
-          th Estado
           th Acciones
       tbody
         each proveedor in proveedores
@@ -25,18 +24,13 @@ block content
             td= proveedor.telefono
             td= proveedor.email
             td
-              if proveedor.activo
-                span(style="color: green; font-weight: bold;") Activo
-              else
-                span(style="color: red; font-weight: bold;") Inactivo
-            td
-              a.boton.boton-advertencia(href=`/proveedores/${proveedor.id}/edit`) Editar
-              form(style="display: inline;", method="POST", action=`/proveedores/${proveedor.id}/delete`)
-                button.boton.boton-peligro(type="submit", onclick="return confirm('¿Estás seguro de que quieres eliminar este proveedor?')") Eliminar
+              a.boton.boton-advertencia(href=`/proveedores/${proveedor.id}/editar`) Editar
+              form(style="display: inline;", method="POST", action=`/proveedores/${proveedor.id}/eliminar`)
+                input(type="hidden", name="_method", value="DELETE")
+                button.boton.boton-peligro(type="submit", onclick="return confirm('¿Eliminar este proveedor?')") Eliminar
   else
     .sin-datos
       p No hay proveedores registrados.
-      a.boton.boton-exito(href="/proveedores/create") Agregar Primer Proveedor
 
   style.
     .encabezado-proveedores {

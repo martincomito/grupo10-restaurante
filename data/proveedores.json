@@ -1,28 +1,9 @@
 [
   {
-    "id": 2,
-    "nombre": "Carnacha 2",
-    "contacto": "María González",
-    "telefono": "+54 11 8765-4321",
-    "email": "maria@carnespremium.com",
-    "direccion": "Av. Santa Fe 5678, CABA",
-    "productos": [
-      "Vegetales",
-      "Carnes"
-    ],
-    "activo": true
-  },
-  {
-    "id": 3,
-    "nombre": "Granos del Norte",
-    "contacto": "Carlos Rodríguez",
-    "telefono": "+54 11 5555-1234",
-    "email": "carlos@granosdelnorte.com",
-    "direccion": "Ruta 9 Km 45, Pilar",
-    "productos": [
-      "Granos",
-      "Cereales"
-    ],
-    "activo": false
+    "id": 1,
+    "nombre": "Test 123",
+    "contacto": "Juan Carlos",
+    "telefono": "+549123456456",
+    "email": "carlos@juan.com"
   }
 ]

@@ -3,7 +3,7 @@ extends ../layout
 block content
   .encabezado-ingredientes
     h2 Stock de Ingredientes
-    a.boton.boton-exito(href="/ingredientes/create") Agregar Nuevo Ingrediente
+    a.boton.boton-exito(href="/ingredientes/crear") Agregar nuevo ingrediente
 
   if ingredientes && ingredientes.length > 0
     table
@@ -14,8 +14,6 @@ block content
           th Cantidad
           th Unidad
           th Precio
-          th Fecha Vencimiento
-          th Categoría
           th Acciones
       tbody
         each ingrediente in ingredientes
@@ -25,16 +23,14 @@ block content
             td= ingrediente.cantidad
             td= ingrediente.unidad
             td $#{ingrediente.precio}
-            td= ingrediente.fechaVencimientoFormateada
-            td= ingrediente.categoria
             td
-              a.boton.boton-advertencia(href=`/ingredientes/${ingrediente.id}/edit`) Editar
-              form(style="display: inline;", method="POST", action=`/ingredientes/${ingrediente.id}/delete`)
-                button.boton.boton-peligro(type="submit", onclick="return confirm('¿Estás seguro de que quieres eliminar este ingrediente?')") Eliminar
+              a.boton.boton-advertencia(href=`/ingredientes/${ingrediente.id}/editar`) Editar
+              form(style="display: inline;", method="POST", action=`/ingredientes/${ingrediente.id}/eliminar`)
+                input(type="hidden", name="_method", value="DELETE")
+                button.boton.boton-peligro(type="submit", onclick="return confirm('¿Eliminar este ingrediente?')") Eliminar
   else
     .sin-datos
       p No hay ingredientes registrados.
-      a.boton.boton-exito(href="/ingredientes/create") Agregar Primer Ingrediente
 
   style.
     .encabezado-ingredientes {

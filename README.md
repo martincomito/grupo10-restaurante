@@ -4,11 +4,10 @@ Sistema web para gestionar el stock de ingredientes y proveedores de un restaura
 
 ## Características
 
-- **Módulo de Stock de Ingredientes**: Gestión completa de inventario con CRUD
-- **Módulo de Proveedores**: Administración de información de proveedores
-- **Interfaz Web**: Plantillas Pug con diseño responsive
-- **Base de Datos JSON**: Almacenamiento en archivos JSON (sin base de datos real)
-- **ESM**: Utiliza módulos ECMAScript (import/export)
+- **Módulo de stock de ingredientes**: Gestión de inventario con CRUD
+- **Módulo de proveedores**: Administración de proveedores con CRUD
+- **Interfaz**: Plantillas Pug para las vistas
+- **Base de datos**: Almacenamiento en archivos JSON
 
 ## Estructura del Proyecto
 
@@ -21,14 +20,14 @@ grupo10-restaurante/
 │   ├── ingredientes.json  # Datos de ingredientes
 │   └── proveedores.json   # Datos de proveedores
 ├── models/                # Modelos de datos
-│   ├── Ingrediente.js     # Modelo para ingredientes
-│   └── Proveedor.js       # Modelo para proveedores
+│   ├── IngredienteModelo.js     # Modelo para ingredientes
+│   └── ProveedorModelo.js       # Modelo para proveedores
 ├── controllers/           # Controladores
-│   ├── ingredienteController.js
-│   └── proveedorController.js
+│   ├── controladorIngredientes.js
+│   └── controladorProveedores.js
 ├── routes/                # Rutas de la aplicación
-│   ├── ingredientes.js
-│   └── proveedores.js
+│   ├── rutasIngredientes.js
+│   └── rutasProveedores.js
 └── views/                 # Plantillas Pug
     ├── layout.pug         # Layout base
     ├── index.pug          # Página principal
@@ -51,29 +50,14 @@ grupo10-restaurante/
    npm install
    ```
 
-2. **Configurar variables de entorno**:
-   El archivo `.env` ya está configurado con el puerto 3000. Puedes modificarlo si necesitas otro puerto.
-
-3. **Ejecutar la aplicación**:
-
-   ```bash
-   npm start
-   ```
-
-   O para desarrollo con auto-reload:
-
-   ```bash
-   npm run dev
-   ```
-
-4. **Acceder a la aplicación**:
-   Abre tu navegador en `http://localhost:3000`
+2. **Acceder a la aplicación**:
+   Abrir navegador en `http://localhost:3000`
 
 ## Funcionalidades
 
 ### Stock de Ingredientes
 
-- **Ver lista**: Visualizar todos los ingredientes con cantidad, precio y fecha de vencimiento
+- **Ver lista**: Visualizar todos los ingredientes con nombre, cantidad, unidad y precio
 - **Agregar**: Crear nuevos ingredientes con toda la información necesaria
 - **Editar**: Modificar datos de ingredientes existentes
 - **Eliminar**: Remover ingredientes del inventario
@@ -95,9 +79,7 @@ grupo10-restaurante/
   "nombre": "Tomate",
   "cantidad": 50,
   "unidad": "kg",
-  "precio": 2.5,
-  "fechaVencimiento": "2024-02-15",
-  "categoria": "Vegetales"
+  "precio": 2.5
 }
 ```
 
@@ -106,13 +88,10 @@ grupo10-restaurante/
 ```json
 {
   "id": 1,
-  "nombre": "Distribuidora Fresh Foods",
+  "nombre": "Distribuidora Comida Fresca",
   "contacto": "Juan Pérez",
   "telefono": "+54 11 1234-5678",
-  "email": "juan@freshfoods.com",
-  "direccion": "Av. Corrientes 1234, CABA",
-  "productos": ["Vegetales", "Frutas"],
-  "activo": true
+  "email": "juan@distribuidora.com"
 }
 ```
 
@@ -125,36 +104,32 @@ grupo10-restaurante/
 ### Ingredientes
 
 - `GET /ingredientes` - Lista de ingredientes
-- `GET /ingredientes/create` - Formulario para crear ingrediente
+- `GET /ingredientes/crear` - Formulario para crear ingrediente
 - `POST /ingredientes` - Crear nuevo ingrediente
-- `GET /ingredientes/:id/edit` - Formulario para editar ingrediente
-- `POST /ingredientes/:id` - Actualizar ingrediente
-- `POST /ingredientes/:id/delete` - Eliminar ingrediente
+- `GET /ingredientes/:id/editar` - Formulario para editar ingrediente
+- `PUT /ingredientes/:id` - Actualizar ingrediente
+- `DELETE /ingredientes/:id/eliminar` - Eliminar ingrediente
 
 ### Proveedores
 
 - `GET /proveedores` - Lista de proveedores
-- `GET /proveedores/create` - Formulario para crear proveedor
+- `GET /proveedores/crear` - Formulario para crear proveedor
 - `POST /proveedores` - Crear nuevo proveedor
-- `GET /proveedores/:id/edit` - Formulario para editar proveedor
-- `POST /proveedores/:id` - Actualizar proveedor
-- `POST /proveedores/:id/delete` - Eliminar proveedor
+- `GET /proveedores/:id/editar` - Formulario para editar proveedor
+- `PUT /proveedores/:id` - Actualizar proveedor
+- `DELETE /proveedores/:id/eliminar` - Eliminar proveedor
 
 ## Tecnologías Utilizadas
 
-- **Node.js** - Runtime de JavaScript
-- **Express.js** - Framework web
-- **Pug** - Motor de plantillas
-- **dotenv** - Gestión de variables de entorno
-- **ESM** - Módulos ECMAScript
-
-## Desarrollo
-
-El proyecto utiliza módulos ES6, por lo que no se requiere Babel ni configuración adicional. Los archivos JSON actúan como base de datos simple, perfecto para desarrollo y testing.
+- **Node.js**
+- **Express.js**
+- **Pug**
+- **dotenv**
+- **method-override** - Para utilizar métodos HTTP PUT y DELETE
+- **ESM** - Módulos ECMAScript para importación y async/await
 
 ## Notas
 
 - Los datos se almacenan en archivos JSON en la carpeta `data/`
 - El sistema incluye validación básica en los formularios
-- Las plantillas incluyen estilos CSS básicos integrados
-- El sistema es completamente funcional sin base de datos externa
+- Las plantillas incluyen estilos CSS básicos

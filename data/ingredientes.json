@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": 1,
+    "nombre": "Tomate Orgánico",
+    "cantidad": 10,
+    "unidad": "kilo",
+    "precio": 2500
+  }
+]

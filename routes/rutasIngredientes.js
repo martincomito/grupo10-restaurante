@@ -14,19 +14,18 @@ const router = express.Router();
 router.get("/", obtenerTodosIngredientes);
 
 // GET /ingredientes/create - Mostrar formulario para crear nuevo ingrediente
-router.get("/create", mostrarFormularioCrear);
+router.get("/crear", mostrarFormularioCrear);
 
 // POST /ingredientes - Crear nuevo ingrediente
 router.post("/", crearIngrediente);
 
-// GET /ingredientes/:id/edit - Mostrar formulario para editar ingrediente
-router.get("/:id/edit", mostrarFormularioEditar);
+// GET /ingredientes/:id/editar - Mostrar formulario para editar ingrediente
+router.get("/:id/editar", mostrarFormularioEditar);
 
-// POST /ingredientes/:id - Actualizar ingrediente
-router.post("/:id", actualizarIngrediente);
+// PUT /ingredientes/:id - Actualizar ingrediente
+router.put("/:id", actualizarIngrediente);
 
-// POST /ingredientes/:id/delete - Eliminar ingrediente
-// ! Intentamos implementar el delete con method-override pero no podemos hacerlo funcionar
-router.post("/:id/delete", eliminarIngrediente);
+// POST /ingredientes/:id/eliminar - Eliminar ingrediente
+router.delete("/:id/eliminar", eliminarIngrediente);
 
 export default router;
