@@ -1,4 +1,4 @@
-# Sistema de Gestión de Restaurante - Sabor Urbano
+# Sistema de Gestión de Restaurante - Jurassic Food
 
 Sistema web para gestionar el stock de ingredientes y proveedores de un restaurante.
 
