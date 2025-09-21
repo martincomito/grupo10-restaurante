@@ -34,7 +34,7 @@ export const crearIngrediente = async (req, res) => {
       precio: parseFloat(req.body.precio),
     };
 
-    const nuevoIngrediente = await IngredienteModelo.crear(datosIngrediente);
+    await IngredienteModelo.crear(datosIngrediente);
     res.redirect("/ingredientes");
   } catch (error) {
     console.error("Error al crear ingrediente:", error);
