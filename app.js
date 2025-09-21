@@ -1,5 +1,4 @@
 import express from "express";
-import pug from "pug";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";

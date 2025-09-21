@@ -79,12 +79,9 @@ class IngredienteModelo {
   // Guardar todos los ingredientes en el archivo
   static async guardarTodos(ingredientes) {
     try {
-      // console.log("Guardando ingredientes:", ingredientes);
       const jsonString = JSON.stringify(ingredientes, null, 2);
-      // console.log("JSON a escribir:", jsonString);
 
       await fs.writeFile(rutaDatos, jsonString, "utf8");
-      // console.log("Archivo guardado exitosamente");
       return true;
     } catch (error) {
       console.error("Error al guardar ingredientes:", error);

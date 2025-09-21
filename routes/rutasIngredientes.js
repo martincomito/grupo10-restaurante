@@ -25,7 +25,7 @@ router.get("/:id/editar", mostrarFormularioEditar);
 // PUT /ingredientes/:id - Actualizar ingrediente
 router.put("/:id", actualizarIngrediente);
 
-// POST /ingredientes/:id/eliminar - Eliminar ingrediente
+// DELETE /ingredientes/:id/eliminar - Eliminar ingrediente
 router.delete("/:id/eliminar", eliminarIngrediente);
 
 export default router;

@@ -1,7 +1,7 @@
 {
   "name": "grupo10-restaurante",
   "version": "1.0.0",
-  "description": "Sistema de gestión para restaurante",
+  "description": "Jurassic Food",
   "main": "app.js",
   "type": "module",
   "scripts": {
